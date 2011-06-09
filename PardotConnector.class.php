@@ -25,7 +25,7 @@ class PardotConnector
 			'http'	=> array(
 				'method'	=> 'POST',
 				'header'	=> 'Content-type: application/x-www-form-urlencoded',
-				'content'	=> 	http_build_query($parameters),
+				'content'	=> http_build_query($parameters),
 			)	
 		));
 		$res = file_get_contents($url,false,$context);
