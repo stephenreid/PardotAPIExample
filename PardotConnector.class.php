@@ -28,6 +28,10 @@ class PardotConnector
 		$ret = $this->send('prospect','create',$arr);
 		return $ret;
 	}
+	public function upsertProspect($arr){
+		$ret = $this->send('prospect','upsert',$arr);
+		return $ret;
+	}
 	public function getProspectById($id){
 		$ret = $this->send('prospect','read',array('id'=>$id));
 		return $ret;
