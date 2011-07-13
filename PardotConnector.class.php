@@ -2,9 +2,9 @@
 class PardotConnector
 {
 	//A flag for echoing debug output
-	private $debug = false;
-	private $userKey;
-	private $apiKey;
+	private $debug 		= false;
+	private $userKey	= null;
+	private $apiKey		= null;
 
 	public function __construct()
 	{
@@ -32,19 +32,19 @@ class PardotConnector
 		$ret = $this->send('prospect','read',array('id'=>$id));
 		return $ret;
 	}
-	public function getProspectById($email){
+	public function getProspectByEmail($email){
 		$ret = $this->send('prospect','read',array('email'=>$email));
 		return $ret;
 	}
 	public function updateProspect($identifier,$arr){
 		//is this an email or an id
+		$login = array('id'=>$identifier);//poorly structured else
 		if (strpos($identifier,'@')){
 			//this is an email address
-		} // else it's an id
-		$ret = $this->send('prospect','update',array('email'=>$email));
-		
-		
-		
+			$login = array('email'=>$identifier);
+		}
+		$ret = $this->send('prospect','update',array_merge($login,$arr));
+		return $ret;
 	}
 	/**
 	 * Send
@@ -55,6 +55,10 @@ class PardotConnector
 		$baseurl = 'https://pi.pardot.com/api/';
 		$version = 'version/3/do/';
 		
+		if ($apiKey && $userKey){
+			$login = array('api_key'=>$apiKey,'user_key'=>$userKey)
+			$parameters = array_merge($login,$parameters);
+		}
 		$url = $baseurl.$module.'/'.$version.$action.'?'.
 		$context = stream_context_create(array(
 			'http'	=> array(
