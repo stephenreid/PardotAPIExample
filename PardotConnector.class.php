@@ -21,13 +21,19 @@ class PardotConnector
 	 * Creates a prospect in Pardot
 	 * @param unknown_type $arr
 	 * $arr contaisn an array of fields
-	 * Requieres at least email=>test@test.com
+	 * Requires at least email=>test@test.com
 	 * see for more : http://developer.pardot.com/kb/api-version-3/using-prospects
 	 */
 	public function createProspect($arr){
 		$ret = $this->send('prospect','create',$arr);
 		return $ret;
 	}
+	/**
+	 * upsertProspect
+	 * insert a prospect if not exist, otherwise update
+	 * @param unknown_type $arr
+	 * Requires at least an email=>test@test.com <field>=<fieldVale>
+	 */
 	public function upsertProspect($arr){
 		$ret = $this->send('prospect','upsert',$arr);
 		return $ret;
@@ -60,7 +66,7 @@ class PardotConnector
 		$version = 'version/3/do/';
 		
 		if ($apiKey && $userKey){
-			$login = array('api_key'=>$apiKey,'user_key'=>$userKey)
+			$login = array('api_key'=>$apiKey,'user_key'=>$userKey);
 			$parameters = array_merge($login,$parameters);
 		}
 		$url = $baseurl.$module.'/'.$version.$action.'?'.
