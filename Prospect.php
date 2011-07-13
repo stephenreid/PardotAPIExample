@@ -16,7 +16,7 @@ class Prospect
 			$p = $conn->getProspectByEmail($arr);
 			//localize
 			foreach($p->children() as $val){
-				$var = $vals->getName();
+				$var = $val->getName();
 				$this->$var=$val;
 			}
 		} elseif (is_array($arr)) { // they passed us all the variables for a prospect
