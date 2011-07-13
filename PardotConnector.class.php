@@ -46,8 +46,6 @@ class PardotConnector
 		
 		
 	}
-
-	public function 
 	/**
 	 * Send
 	 * @desc Sends a web request to the api
