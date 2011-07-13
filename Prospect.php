@@ -49,7 +49,8 @@ class Prospect
 		}
 		return null;
 	}
-	public function __isset($name) {
+	public function __isset($name)
+	{
         return isset($this->data[$name]);
     }
 }
