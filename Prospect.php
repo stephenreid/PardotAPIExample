@@ -22,30 +22,17 @@ class Prospect
 	 * Prospect()
 	 * Constructs our prospect object
 	 * This would typically be called $prospect = new Prospect();
-	 * Can be called $prospect = new Prospect(array('email'=>'test@test.com",'first_name'=>Stephen)); to create a prospect
-	 * Or can populate a prospect from Pardot by $prospect = new Prospect('test@test.com');
+	 * Can be called $prospect = new Prospect(array('email'=>'test@test.com",'first_name'=>'Stephen')); to create a prospect
 	 * @param unknown_type $arr
 	 */
 	public function __construct($arr = null)
 	{
-		if (strpos($arr,'@')){//assume it's an email and fetch the prospect
-			//authenticate
-			$conn = new PardotConnector();
-			$conn->authenticate($username, $password, $userKey);
-			
-			$this->conn = $conn;
-			//query
-			$p = $conn->getProspectByEmail($arr);
-			//localize
-			foreach($p->children() as $val){
-				$var = $val->getName();
-				$this->$var=$val;
-			}
-		} elseif (is_array($arr)) { // they passed us all the variables for a prospect
+		if (is_array($arr)) { // they passed us all the variables for a prospect
 			foreach ($arr as $key => $value){
 				$this->$key=$value;
 			}
 		}
+		//else we have a blank slate
 	}
 	/**
 	 * save()
@@ -62,6 +49,30 @@ class Prospect
 		}
 		//upsert
 		$conn->upsertProspect($data);
+	}
+	/**
+	 * fetcProspectByEmail
+	 * @desc Fetches a prospect from the Pardot API and returns a Prospect object;
+	 * @param Str $email
+	 * Ie: $prospect = prospect::fetchProspectByEmail('testProspect@pardot.com');
+	 * $prospect->company = 'New Company Value';
+	 * $prospect->save();
+	 */
+	public static function fetchProspectByEmail($email)
+	{
+			//authenticate
+			$conn = new PardotConnector();
+			$conn->authenticate($username, $password, $userKey);
+			//query
+			$p = $conn->getProspectByEmail($arr);
+			
+			//localize
+			$prospect = new Prospect();//initialize one of my own
+			foreach($p->children() as $val){
+				$var = $val->getName();
+				$prospect->$var=$val;
+			}
+			return $prospect;
 	}
 	
 	//These are all magic methods
