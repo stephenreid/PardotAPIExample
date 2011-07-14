@@ -1,9 +1,23 @@
 <?php 
+/**
+ * This is a pet project of making some classes that interact with the Pardot API.
+ * @author stephenreid
+ * @since 7/13/2011
+ *
+ */
 class Prospect
 {
 	private $conn = null;
 	private $data = array();
 	
+	/**
+	 * Prospect()
+	 * Constructs our prospect object
+	 * This would typically be called $prospect = new Prospect();
+	 * Can be called $prospect = new Prospect(array('email'=>'test@test.com",'first_name'=>Stephen)); to create a prospect
+	 * Or can populate a prospect from Pardot by $prospect = new Prospect('test@test.com');
+	 * @param unknown_type $arr
+	 */
 	public function __construct($arr = null)
 	{
 		if (strpos($arr,'@')){//assume it's an email and fetch the prospect
@@ -25,6 +39,11 @@ class Prospect
 			}
 		}
 	}
+	/**
+	 * save()
+	 * Uses the current $data arr 
+	 * and stores the object to pardot
+	 */
 	public function save(){
 		//authenticate
 		$conn = $this->conn;
