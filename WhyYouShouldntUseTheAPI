@@ -1,0 +1,22 @@
+**Are you trying to perform an action for a prospect that is currently on your website?
+The prospect went to such and such a page, so they must be interested in X product. Quick, mark that custom field in their profile.
+WRONG : Use a form / form handler.
+
+**Are you updated fields for a prospect currently on your site?
+A form handler is a much better option. You can send it values and the prospects records will be authenticated
+and the prospect's score can automatically be updated for the 'completion'
+You can even use a <img> tag or hidden <iframe>
+
+The advantage of using an iframe > form handler is that prospects will be scored / get the appropriate
+visitor activity.
+
+**Do you have a job server that will run API requests in the background?
+If you run API requests in the background, your pages will load more slowly. If you don't have an API key stored locally (they expire every hour)
+then you are running a minimum of 2 requests in the background. You should expect best case that each exteneral request takes ~1 second - because sometimes
+the internet is slow.  
+	So if you do:
+		authentication,
+		query,
+		update,
+	And your page is fast - page load speed is at 4 seconds already. Some people are already complaining.
+	
