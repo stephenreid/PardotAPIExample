@@ -1,4 +1,16 @@
 <?php
+/**
+ * I / Pardot make no guarantees as to the accuracy of this document. 
+ * As you are free to use this, it also comes with no additional support.
+ * If you do have questions for support, please email them the actual query (url + parameters)
+ * that you are trying to make and why the results are not working for you
+ * WE WILL NOT DEBUG YOUR CODE
+ * WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
+ * 
+ * @author stephenreid
+ * @since 7/14/2011
+ * @desc A connecting class to the pardot api
+ */
 class PardotConnector
 {
 	//A flag for echoing debug output
