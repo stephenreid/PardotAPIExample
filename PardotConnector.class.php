@@ -75,11 +75,12 @@ class PardotConnector
 	 */
 	private function send($module = 'prospect',$action = 'query',$parameters = array()){
 		$baseurl = 'https://pi.pardot.com/api/';
-		$version = 'version/3/do/';
+		$version = 'version/3/';
 		
-		if ($apiKey && $userKey){
-			$login = array('api_key'=>$apiKey,'user_key'=>$userKey);
+		if ($this->apiKey && $this->userKey){
+			$login = array('api_key'=>$this->apiKey,'user_key'=>$this->userKey);
 			$parameters = array_merge($login,$parameters);
+			$version.='do/';
 		}
 		$url = $baseurl.$module.'/'.$version.$action.'?'.
 		$context = stream_context_create(array(
