@@ -1,6 +1,19 @@
 <?php 
-// This is an example of hitting the pardot API with extremely procedureal code
-// This will be a bit of a pain to write, functions ftw.
+/*
+This is an example of hitting the pardot API with extremely procedureal code
+This will be a bit of a pain to write, functions ftw.
+ * @author stephenreid
+ * @desc a procedural (redundant) example of using the pardot API 
+ * @since 7/14/2011
+ * 
+ * I / Pardot make no guarantees as to the accuracy of this document. 
+ * As you are free to use this, it also comes with no additional support.
+ * If you do have questions for support, please email them the actual query (url + parameters)
+ * that you are trying to make and why the results are not working for you
+ * WE WILL NOT DEBUG YOUR CODE
+ * WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
+ * 
+ */
 
 //authenticate to get an api key for an hour
 $userKey ='UserKeyCanBeFoundByClickingOnYourEmailAddressInTheTopRightOfPardot';
