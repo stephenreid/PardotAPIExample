@@ -1,12 +1,12 @@
 <?php
 /**
- * I / Pardot make no guarantees as to the accuracy of this document. 
+ * I / Pardot make no guarantees as to the accuracy of this document.
  * As you are free to use this, it also comes with no additional support.
  * If you do have questions for support, please email them the actual query (url + parameters)
  * that you are trying to make and why the results are not working for you
  * WE WILL NOT DEBUG YOUR CODE
  * WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
- * 
+ *
  * @author stephenreid
  * @since 7/14/2011
  * @desc A connecting class to the pardot api
@@ -24,12 +24,12 @@ class PardotConnector
 	public function authenticate($username,$password,$userKey){
 		//gets a user api key back
 		$this->userKey= $userKey;
-		$ret = $this->send('login','',array($username,$password,$userKey));
+		$ret = $this->send('login','',array('email'=>$username,'password'=>$password,'user_key'=>$userKey));
 		$this->apiKey=$ret->api_key;//add error handling to this later
 		return $ret;
 	}
 	/**
-	 * 
+	 *
 	 * Creates a prospect in Pardot
 	 * @param unknown_type $arr
 	 * $arr contaisn an array of fields
@@ -89,7 +89,7 @@ class PardotConnector
 				'header'	=> 'Content-type: application/x-www-form-urlencoded',
 				'content'	=> http_build_query($parameters),
 				//add a timeout here
-			)	
+			)
 		));
 		$res = file_get_contents($url,false,$context);
 		
