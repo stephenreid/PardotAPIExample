@@ -16,7 +16,7 @@
 function pardot_help($path, $arg) {
 	switch ($path) {
 		case "admin/help#pardot":
-			return '<p>'.  t("Displays links to nodes created on this date") .'</p>';
+			return '<p>'.  t("The Pardot Module helps you implement Pardot tracking and forms in your Drupal CMS") .'</p>';
 			break;
 	}
 
