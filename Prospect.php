@@ -49,12 +49,7 @@ class Prospect
 	 */
 	public function save(){
 		//authenticate
-		$connection = $this->conn;
-		if (!$connection){
-			$connection = new PardotConnector();
-			$connection->authenticate($username, $password, $userKey);
-			$this->connection = $connecction;
-		}
+		$connection = $this->getConnection();
 		//upsert
 		$connection->upsertProspect($data);
 	}
