@@ -68,6 +68,24 @@ class PardotConnector
 		$ret = $this->send('prospect','update',array_merge($login,$arr));
 		return $ret;
 	}
+	public function assignProspect($prospectIdentifier,$userIdentifier){
+		$params = array();
+		if (false && strpos($prospectIdentifier,'@')){//not available via assign
+			//this is an email address
+			$params['email']=$prospectIdentifier;
+		} else {
+			$params['id']=$prospectIdentifier;
+		}
+		if (false && strpos($userIdentifier,'@')){//not available via assign
+			//this is an email address
+			$params['user_email']=$prospectIdentifier;
+		} else {
+			$params['user_id']=$userIdentifier;
+		}
+		$ret = $this->send('prospect','assign',$params;
+		return $ret;
+
+	}
 	/**
 	 * Send
 	 * @desc Sends a web request to the api
