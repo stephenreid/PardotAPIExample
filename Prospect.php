@@ -15,7 +15,7 @@
  */
 class Prospect
 {
-	private $conn = null;
+	private $connection = null;
 	private $data = array();
 	
 	/**
@@ -34,6 +34,14 @@ class Prospect
 		}
 		//else we have a blank slate
 	}
+	public function getConnection(){
+		$connection = $this->connection;
+		if (!$connection){
+			$connection = new PardotConnector();
+			$connection->authenticate($username, $password, $userKey);
+			$this->connection = $connection;
+		}
+	}
 	/**
 	 * save()
 	 * Uses the current $data arr 
@@ -41,14 +49,14 @@ class Prospect
 	 */
 	public function save(){
 		//authenticate
-		$conn = $this->conn;
-		if (!$conn){
-			$conn = new PardotConnector();
-			$conn->authenticate($username, $password, $userKey);
-			$this->conn = $conn;
+		$connection = $this->conn;
+		if (!$connection){
+			$connection = new PardotConnector();
+			$connection->authenticate($username, $password, $userKey);
+			$this->connection = $connecction;
 		}
 		//upsert
-		$conn->upsertProspect($data);
+		$connection->upsertProspect($data);
 	}
 	/**
 	 * fetcProspectByEmail
@@ -61,8 +69,7 @@ class Prospect
 	public static function fetchProspectByEmail($email)
 	{
 			//authenticate
-			$conn = new PardotConnector();
-			$conn->authenticate($username, $password, $userKey);
+			$conn = $this->getConnection();
 			//query
 			$p = $conn->getProspectByEmail($arr);
 			
@@ -74,7 +81,16 @@ class Prospect
 			}
 			return $prospect;
 	}
-	
+	/**
+	*setAssignedUser
+	*assigns this prospect to a user based on email or id
+	*@param userIdentifier (an email address or an id)
+	*/
+	public function setAssignedUser($userIdentifier)
+	{
+		$connection = $this->getConnection();
+		$connection->assignProspect($this->id,$userIdentifier);
+	}
 	//These are all magic methods
 	public function __set($name,$value)
 	{
