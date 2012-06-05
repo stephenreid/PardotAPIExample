@@ -1,12 +1,8 @@
 <?php
 /**
- * I / Pardot make no guarantees as to the accuracy of this document.
- * As you are free to use this, it also comes with no additional support.
- * If you do have questions for support, please email them the actual query (url + parameters)
- * that you are trying to make and why the results are not working for you
- * WE WILL NOT DEBUG YOUR CODE
- * WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
- *
+ * This is a basic class for connecting to the Pardot API
+ * The important parts here are the authenticate, send, and various prospect functions
+ * Check out Prospect.class.php as a way to manipulate prospects.
  * @author stephenreid
  * @since 7/14/2011
  * @desc A connecting class to the pardot api
@@ -15,16 +11,25 @@ class PardotConnector
 {
 	//A flag for echoing debug output
 	private $debug 		= false;
-	private $userKey	= null;
 	private $apiKey		= null;
+	
+	private $email = '####';
+	private $password = '####';
+	private $userKey = '####';
+	
 
 	public function __construct()
 	{
 	}
-	public function authenticate($username,$password,$userKey){
+	public function authenticate($username=null,$password=null,$userKey=null){
 		//gets a user api key back
-		$this->userKey= $userKey;
-		$ret = $this->send('login','',array('email'=>$username,'password'=>$password,'user_key'=>$userKey));
+		if(false && $username){
+			$params = array('email'=>$username,'password'=>$password,'user_key'=>$userKey);
+		} else {
+			$params = array('email'=>$this->email,'password'=>$this->password,'user_key'=>$this->userKey);
+		}
+		$ret = $this->send('login','',$params);
+		
 		$this->apiKey=$ret->api_key;//add error handling to this later
 		return $ret;
 	}
@@ -82,7 +87,7 @@ class PardotConnector
 		} else {
 			$params['user_id']=$userIdentifier;
 		}
-		$ret = $this->send('prospect','assign',$params;
+		$ret = $this->send('prospect','assign',$params);
 		return $ret;
 
 	}
@@ -110,7 +115,10 @@ class PardotConnector
 			)
 		));
 		$res = file_get_contents($url,false,$context);
-		
-		return simplexml_load_string($res);
+		$ret = simplexml_load_string($res);
+		if ($ret->err){
+			throw new Exception($ret->err.' '.$url.' '.http_build_query($parameters), '1');
+		}
+		return $ret;
 	}
 }?>
