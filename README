@@ -1,4 +1,5 @@
-# PARDOT API EXAMPLE
+PARDOT API EXAMPLE
+==================
 This Repo has some sample PHP scripts of using the Pardot API.
 
 PardotConnector.class.php does all of the talking with the Pardot Api, including authentication
@@ -9,7 +10,8 @@ Prospect.class.php is a container for Prospects that sets all prospect data thro
 If you are not thinking object oriented (you should be, PHP 5 has been here for a while) then 
 the examples in ProceduralEx.php might help you.
 
-## About Pardot
+About Pardot
+------------
 Pardot is a SAAS Marketing Automation Platform.
 We help you find the buyers interested in actually buying your products.
 We help shorten sales cycle by helping your marketing department generate useful content
@@ -45,7 +47,8 @@ check out http://www.pardot.com/help/faqs/emails/integrating-third-party-email-s
 
 
 
-## Disclaimer
+Disclaimer
+----------
 I (stephenreid) make no guarantees as to the accuracy of these examples.
 Most, if not all have never been tested and will require some debugging coding, etc on your part
  * I / Pardot make no guarantees as to the accuracy of this document. 
