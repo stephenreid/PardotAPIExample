@@ -30,8 +30,10 @@ http://www.pardot.com/help/faqs/crm/integration-options-for-other-crms
 ## When to NOT Use the API
 We do have occassional requests and questions when clients are trying to do server side requests
 based on a client side request to their website. Using the API for this is often not optimal for a few reasons
+
  1) No Visitor Tracking
     Because the client is cookied with a different IP address from your server we can't link the data
+
  2) Many Background Requests
     We try to make most of our requests take as little time as possible, but to use the API on a web request,
     you'd have to login to the api, find the prospect you want to update, and save the prospect. This adds a few
