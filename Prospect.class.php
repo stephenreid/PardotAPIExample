@@ -48,7 +48,7 @@ class Prospect
 		//authenticate
 		$connection = $this->getConnection();
 		//upsert
-		$connection->upsertProspect(array_diff($this->data,$this->originalData));
+		$connection->upsertProspect(array_diff_assoc($this->data,$this->originalData));
 	}
 	/**
 	 * fetchProspectByEmail
