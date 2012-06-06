@@ -16,7 +16,10 @@
 class Prospect
 {
 	private $connection = null;
+	//this stores our auto getters and setters.
 	private $data = array();
+	//a cached version of wht we go back to only save what has changed.
+	private $originalData = array();
 	
 	/**
 	 * Prospect()
@@ -52,10 +55,10 @@ class Prospect
 		//authenticate
 		$connection = $this->getConnection();
 		//upsert
-		$connection->upsertProspect($this->data);
+		$connection->upsertProspect(array_diff($this->data,$this->originalData));
 	}
 	/**
-	 * fetcProspectByEmail
+	 * fetchProspectByEmail
 	 * @desc Fetches a prospect from the Pardot API and returns a Prospect object;
 	 * @param Str $email
 	 * Ie: $prospect = prospect::fetchProspectByEmail('testProspect@pardot.com');
@@ -72,6 +75,9 @@ class Prospect
 			//localize
 			$prospect = new Prospect();//initialize one of my own
 			$data = json_decode(json_encode($p),true);//convert everything to std
+			//store our previous cache
+			$this->originalData = $data['prospect'];
+			//store our modifiable array;
 			$this->data = $data['prospect'];
 
 			return $this;
