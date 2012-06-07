@@ -45,10 +45,19 @@ class Prospect
 	 * and stores the object to pardot
 	 */
 	public function save(){
+		//get our changeset
+		$changes = array_diff_assoc($this->data,$this->originalData);
+		if(!count($changes)){
+			//if there are no changes then don't commit anything
+			return;
+		}
+		if(count($this->originalData)){//use an identifier if it already existed
+			$changes = array_merge(array('id'=>$this->originalData['id']),$changes);
+		}
 		//authenticate
 		$connection = $this->getConnection();
 		//upsert
-		$connection->prospectUpsert(array_diff_assoc($this->data,$this->originalData));
+		$connection->prospectUpsert($changes);
 	}
 	/**
 	 * fetchProspectByEmail
