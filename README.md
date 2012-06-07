@@ -52,12 +52,15 @@ check out http://www.pardot.com/help/faqs/emails/integrating-third-party-email-s
 Disclaimer
 ----------
 I (stephenreid) make no guarantees as to the accuracy of these examples.
-Most, if not all have never been tested and will require some debugging coding, etc on your part
- * I / Pardot make no guarantees as to the accuracy of this document. 
- * As you are free to use this, it also comes with no additional support.
- * If you do have questions for support, please email them the actual query (url + parameters)
- * that you are trying to make and why the results are not working for you
- * WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
+Most, if not all have never been tested and will require some debugging, coding, etc on your part
+
+I / Pardot make no guarantees as to the accuracy of this document. 
+
+As you are free to use this, it also comes with no additional support.
+
+If you do have questions for support, please email them the actual query (url + parameters) that you are trying to make and why the results are not working for you
+
+WE CAN NOT MAKE ESTIMATES ON BUILDING ON THIS CODE
 
 
 
