@@ -187,13 +187,13 @@ class PardotConnector
 	public function prospectAssign($prospectIdentifier,$userIdentifier)
 	{
 		$params = array();
-		if (false && strpos($prospectIdentifier,'@')){//not available via assign
+		if (strpos($prospectIdentifier,'@')){//not available via assign
 			//this is an email address
 			$params['email']=$prospectIdentifier;
 		} else {
 			$params['id']=$prospectIdentifier;
 		}
-		if (false && strpos($userIdentifier,'@')){//not available via assign
+		if (strpos($userIdentifier,'@')){//not available via assign
 			//this is an email address
 			$params['user_email']=$prospectIdentifier;
 		} else {
