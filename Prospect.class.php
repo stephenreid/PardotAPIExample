@@ -58,6 +58,8 @@ class Prospect
 		$connection = $this->getConnection();
 		//upsert
 		$connection->prospectUpsert($changes);
+		//update what our original data is
+		$this->originalData = $this->data;
 	}
 	/**
 	 * fetchProspectByEmail
