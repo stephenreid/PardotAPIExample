@@ -29,7 +29,7 @@ class PardotConnector
 
 	public function authenticate($username=null,$password=null,$userKey=null){
 		//gets a user api key back
-		if($username==null){
+		if($username!=null){
 			$params = array('email'=>$username,'password'=>$password,'user_key'=>$userKey);
 		} else {
 			$params = array('email'=>$this->email,'password'=>$this->password,'user_key'=>$this->userKey);
