@@ -1,9 +1,9 @@
-<?php 
+<?php
 /**
  * This is a pet project of making some classes that interact with the Pardot API.
  * @author stephenreid
  * @since 7/13/2011
- * 
+ *
  *
  */
 class Prospect
@@ -13,7 +13,7 @@ class Prospect
 	private $data = array();
 	//a cached version of wht we go back to only save what has changed.
 	private $originalData = array();
-	
+
 	/**
 	 * Prospect()
 	 * Constructs our prospect object
@@ -41,14 +41,14 @@ class Prospect
 	}
 	/**
 	 * save()
-	 * Uses the current $data arr 
+	 * Uses the current $data arr
 	 * and stores the object to pardot
 	 */
 	public function save(){
 		//authenticate
 		$connection = $this->getConnection();
 		//upsert
-		$connection->upsertProspect(array_diff_assoc($this->data,$this->originalData));
+		$connection->prospectUpsert(array_diff_assoc($this->data,$this->originalData));
 	}
 	/**
 	 * fetchProspectByEmail
@@ -63,15 +63,15 @@ class Prospect
 			//authenticate
 			$conn = $this->getConnection();
 			//query
-			$p = $conn->getProspectByEmail($email);
-			
+			$p = $conn->prospectGetByEmail($email);
+
 			//localize
 			$prospect = new Prospect();//initialize one of my own
 			$data = json_decode(json_encode($p),true);//convert everything to std
 			//store our previous cache
-			$this->originalData = $data['prospect'];
+			$this->originalData = $data;
 			//store our modifiable array;
-			$this->data = $data['prospect'];
+			$this->data = $data;
 
 			return $this;
 	}
