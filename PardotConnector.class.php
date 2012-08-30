@@ -31,6 +31,13 @@ class PardotConnector
 		//gets a user api key back
 		if($username!=null){
 			$params = array('email'=>$username,'password'=>$password,'user_key'=>$userKey);
+			
+			//store the username and password so that we can catch api expired exceptions in the future
+			$this->email = $username;
+			$this->password = $password;
+
+			//have to store this for future requests
+			$this->userKey = $userkey;
 		} else {
 			$params = array('email'=>$this->email,'password'=>$this->password,'user_key'=>$this->userKey);
 		}
