@@ -14,9 +14,9 @@ class PardotConnector
 	private $apiKey		= null;
 	private $outputMode	= 'full'; // choose between 'simple','full','mobile'
 
-	private $email = '####';
-	private $password = '####';
-	private $userKey = '####';
+	private $email = '';
+	private $password = '';
+	private $userKey = '';
 
 
 	/**
