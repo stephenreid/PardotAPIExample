@@ -60,6 +60,7 @@ class Prospect
 		$connection->prospectUpsert($changes);
 		//update what our original data is
 		$this->originalData = $this->data;
+		return true;
 	}
 	/**
 	 * fetchProspectByEmail
@@ -89,12 +90,14 @@ class Prospect
 	/**
 	*setAssignedUser
 	*assigns this prospect to a user based on email or id
+	*after assign, we are out of date, so uperst changes and get the prospect back
 	*@param userIdentifier (an email address or an id)
 	*/
 	public function setAssignedUser($userIdentifier)
 	{
 		$connection = $this->getConnection();
-		$connection->assignProspect($this->id,$userIdentifier);
+		$connection->prospectAssign($this->id,$userIdentifier);
+		return $this->save();
 	}
 	//These are all magic methods
 	public function __set($name,$value)
