@@ -251,6 +251,7 @@ class PardotConnector
 	public function prospectQuery($params = array())
 	{
 		$ret = $this->send('prospect','query',$params);
+		return $ret;		
 	}
 	/**
 	 * prospectUpdate
